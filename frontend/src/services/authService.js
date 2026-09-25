@@ -1,18 +1,25 @@
 import api from "../api/axios"
 
-export  const signUp =async ({email,password})=>{
-    const {data} = await api.post('/api/auth/signup',{email,password})
-    if (data?.token) {
-        localStorage.setItem('token', data.token)
-        localStorage.setItem('user', JSON.stringify(data.user || { email }))
-    }
-    return data
-}
+
+
+
+
+export const signUp = async ({ email, password }) => {
+  const { data } = await api.post('/api/auth/signup', {
+    email,
+    password,
+  });
+
+  return data;
+};
+
+
 
 export const signIn = async ({email,password})=>{
-    const {data} = await api.post('/api/auth/signin')
-    if (data?.token) {
-    localStorage.setItem('token', data.token)
+    const {data} = await api.post('/api/auth/signin',{email,password})
+    
+    if (data?.access_token) {
+    localStorage.setItem('token', data?.access_token)
     localStorage.setItem('user', JSON.stringify(data.user || { email }))
     }
     return data

@@ -33,7 +33,7 @@ const SignUp=() =>{
     setLoading(true)
     try {
       await signUp({ email: form.email, password: form.password })
-      navigate('/products')
+      navigate('/')
     } catch (err) {
       setApiError(
         err?.response?.data?.message || 'Unable to create an account. Please try again.'
@@ -130,7 +130,7 @@ const SignUp=() =>{
           <button
             type="submit"
             disabled={loading}
-            className="flex w-full items-center justify-center rounded-md bg-primary-600 px-4 py-2.5 text-base font-medium text-white hover:bg-primary-700 disabled:cursor-not-allowed disabled:opacity-60"
+            className="flex w-full items-center justify-center rounded-md bg-blue-600 px-4 py-2.5 text-base font-medium text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {loading ? 'Creating account…' : 'Sign Up'}
           </button>

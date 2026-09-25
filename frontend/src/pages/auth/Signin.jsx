@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom'
+import { signIn } from "../../services/authService";
 
 
  const SignIn = ()=>{
@@ -29,11 +30,12 @@ async function handleSubmit(e){
     if (Object.keys(nextErrors).length > 0) return
 
     setLoading(true)
+    
     try {
       await signIn(form)
       navigate('/products')
     } catch (err) {
-      setapiError(
+      setApiError(
         err?.response?.data?.message || 'Unable to sign in. Check your details and try again.'
       )
     } finally {
@@ -107,7 +109,7 @@ async function handleSubmit(e){
           <button
             type="submit"
             disabled={loading}
-            className="flex w-full items-center justify-center rounded-md bg-primary-600 px-4 py-2.5 text-base font-medium text-white hover:bg-primary-700 disabled:cursor-not-allowed disabled:opacity-60"
+            className="flex w-full items-center justify-center rounded-md bg-blue-600 px-4 py-2.5 text-base font-medium text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {loading ? 'Signing in…' : 'Sign In'}
           </button>
